@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crescent Moon</title>
+    <style>
+      body {
+        background-color: #f3f3f3;
+        display: grid;
+        place-items: center;
+        height: 100vh;
+        overflow: hidden;
+        transition: background 0.5s ease;
+      }
+
+      .container {
+        width: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+
+      .p {
+        font-size: 30px;
+        font-family: sans-serif;
+        padding: 20px;
+        background: transparent;
+        color: #373737;
+        cursor: pointer;
+        transition: color 0.5s ease;
+      }
+
+      .c-container {
+        width: 100px;
+        height: 250px;
+
+        background: #999;
+
+        border-radius: 50px;
+
+        display: flex;
+
+        justify-content: center;
+
+        padding: 5px 0px;
+
+        transform: rotate(90deg);
+      }
+
+      #circle {
+        height: 90px;
+        width: 90px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.5s ease, background 0.5s ease;
+      }
+      .dark {
+        /* align-self: start; */
+        transform: translateY(0px);
+        background: #fff;
+      }
+      .light {
+        /* align-self: end; */
+        transform: translateY(160px);
+        background: #373737;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p class="p p-light">LIGHT</p>
+      <div class="c-container">
+        <div id="circle" class="light"></div>
+      </div>
+      <p class="p p-dark">DARK</p>
+    </div>
+
+    <script>
+      const darkBtn = document.querySelector(".p-dark");
+      lightBtn = document.querySelector(".p-light");
+      cont = document.querySelector(".c-container");
+      circle = document.querySelector("#circle");
+      buttons = [...document.getElementsByClassName("p")];
+      circleClass = circle.classList;
+
+      // FUNCTIONS light and dark
+
+      const addDark = () => {
+        circleClass.remove("light");
+        circleClass.add("dark");
+
+        document.querySelector("body").style.backgroundColor = "#373737";
+
+        buttons.forEach((item) => {
+          item.style.color = "#f3f3f3";
+        });
+      };
+
+      const addLight = () => {
+        circleClass.remove("dark");
+        circleClass.add("light");
+
+        document.querySelector("body").style.backgroundColor = "#F3F3F3";
+
+        buttons.forEach((item) => {
+          item.style.color = "#373737";
+        });
+      };
+
+      cont.addEventListener("click", () => {
+        circleClass.contains("light") ? addDark() : addLight();
+      });
+
+      // BUTTONS functions
+      darkBtn.addEventListener("click", () => {
+        {
+          circleClass.contains("dark") ? "" : addDark();
+        }
+      });
+
+      lightBtn.addEventListener("click", () => {
+        {
+          circleClass.contains("light") ? "" : addLight();
+        }
+      });
+    </script>
+  </body>
+</html>
